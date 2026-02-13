@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeafAlive - Your Plant Has a Voice</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-50: #f0fdf4;
+      --green-100: #dcfce7;
+      --green-200: #bbf7d0;
+      --green-400: #4ade80;
+      --green-500: #22c55e;
+      --green-600: #16a34a;
+      --green-700: #15803d;
+      --green-800: #166534;
+      --green-900: #14532d;
+      --warm-50: #fefce8;
+      --warm-100: #fef9c3;
+      --stone-50: #fafaf9;
+      --stone-100: #f5f5f4;
+      --stone-200: #e7e5e4;
+      --stone-600: #57534e;
+      --stone-700: #44403c;
+      --stone-800: #292524;
+      --stone-900: #1c1917;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--stone-800);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* --- Nav --- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--green-100);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-700);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span { color: var(--green-500); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--stone-600);
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green-600); }
+
+    /* --- Hero --- */
+    .hero {
+      padding: 140px 24px 80px;
+      background: linear-gradient(175deg, var(--green-50) 0%, #fff 50%, var(--warm-50) 100%);
+      text-align: center;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .hero-text {
+      flex: 1;
+      text-align: left;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--green-100);
+      color: var(--green-700);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--stone-900);
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green-600);
+    }
+    .hero p {
+      font-size: 19px;
+      color: var(--stone-600);
+      max-width: 500px;
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-600);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover {
+      background: var(--green-700);
+      transform: translateY(-1px);
+    }
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-image img {
+      max-height: 540px;
+      border-radius: 24px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+    }
+
+    /* --- Features --- */
+    .features {
+      padding: 100px 24px;
+      background: #fff;
+    }
+    .features-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-600);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--stone-900);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: var(--stone-600);
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+    .feature-card {
+      background: var(--green-50);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(22,163,74,0.1);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--green-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--stone-900);
+      margin-bottom: 12px;
+    }
+    .feature-card p {
+      font-size: 15px;
+      color: var(--stone-600);
+      line-height: 1.6;
+    }
+
+    /* --- App Screenshots --- */
+    .screenshots {
+      padding: 100px 24px;
+      background: var(--green-50);
+    }
+    .screenshots-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: start;
+    }
+    .screenshot-item {
+      text-align: center;
+    }
+    .screenshot-item img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .screenshot-item h3 {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--stone-800);
+    }
+    .screenshot-item p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--stone-600);
+    }
+
+    /* --- How It Works --- */
+    .how-it-works {
+      padding: 100px 24px;
+      background: #fff;
+    }
+    .how-it-works-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 60px;
+    }
+    .step {
+      text-align: center;
+    }
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--green-600);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .step h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--stone-900);
+      margin-bottom: 12px;
+    }
+    .step p {
+      font-size: 15px;
+      color: var(--stone-600);
+      line-height: 1.6;
+    }
+
+    /* --- Poster / Demo --- */
+    .demo {
+      padding: 100px 24px;
+      background: linear-gradient(180deg, var(--green-50) 0%, #fff 100%);
+    }
+    .demo-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .demo-inner img {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 24px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+    }
+
+    /* --- CTA --- */
+    .cta {
+      padding: 100px 24px;
+      background: var(--green-800);
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: 38px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta p {
+      font-size: 18px;
+      color: var(--green-200);
+      max-width: 500px;
+      margin: 0 auto 36px;
+    }
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--green-800);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .cta-button:hover {
+      background: var(--green-100);
+      transform: translateY(-1px);
+    }
+
+    /* --- Footer --- */
+    footer {
+      padding: 40px 24px;
+      background: var(--stone-900);
+      text-align: center;
+    }
+    footer p {
+      font-size: 14px;
+      color: var(--stone-600);
+    }
+    footer a {
+      color: var(--green-400);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .hero-inner {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .hero-text { text-align: center; }
+      .hero h1 { font-size: 36px; }
+      .hero p { margin: 0 auto 28px; }
+      .hero-image img { max-height: 400px; }
+      .features-grid,
+      .screenshots-grid,
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .section-title { font-size: 28px; }
+      .cta h2 { font-size: 28px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span>&#127793;</span> LeafAlive
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#app">App</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="https://github.com/hjian42/LeafAlive">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">Sensor + AI + Empathy</div>
+        <h1>Your plant has<br>a <em>voice</em> now.</h1>
+        <p>LeafAlive pairs a tiny soil sensor with an AI-powered persona so your houseplant can tell you how it feels, ask for what it needs, and even listen when you need a friend.</p>
+        <a href="https://github.com/hjian42/LeafAlive" class="hero-cta">
+          View on GitHub &rarr;
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="images/ideal_demo.jpg" alt="LeafAlive demo - phone app next to a plant with sensor">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="section-label">Why LeafAlive</div>
+      <h2 class="section-title">Three pillars of plant care</h2>
+      <p class="section-subtitle">We combine real hardware sensing, AI personality, and emotional design to build a genuine connection between you and your plant.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#127777;&#65039;</div>
+          <h3>Real-Time Plant Sensing</h3>
+          <p>A small sensor sits in the soil, continuously measuring moisture, light, temperature, and humidity. Your plant's vitals, always at a glance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#129302;</div>
+          <h3>AI-Powered Plant Persona</h3>
+          <p>Each plant gets a unique name and personality. It reads its own sensor data and speaks in first person &mdash; telling you exactly what it needs.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128154;</div>
+          <h3>A Gentle Listener</h3>
+          <p>Your plant doesn't just talk about itself. It asks about your day, listens to your stories, and offers comfort when you need it most.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Screenshots -->
+  <section class="screenshots" id="app">
+    <div class="screenshots-inner">
+      <div class="section-label">The App</div>
+      <h2 class="section-title">Meet your plants, all in one place</h2>
+      <p class="section-subtitle">Manage multiple plants, monitor real-time sensor data with ideal ranges, and have natural conversations.</p>
+      <div class="screenshots-grid">
+        <div class="screenshot-item">
+          <img src="images/1.app_plant_management.jpg" alt="Plant management screen with Ghibli-style avatars">
+          <h3>Your Plant Collection</h3>
+          <p>Each plant gets an AI-generated avatar and a unique persona name.</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="images/2.app_plant_sensor_metrics.jpg" alt="Sensor metrics dashboard showing temperature, humidity, light, moisture">
+          <h3>Live Sensor Dashboard</h3>
+          <p>See real-time readings with recommended ranges for your specific plant species.</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="images/3.app_chat.jpg" alt="Chat conversation with plant persona expressing needs and listening">
+          <h3>Chat with Your Plant</h3>
+          <p>Your plant expresses its needs from sensor data and genuinely listens to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="how-it-works-inner">
+      <div class="section-label">Getting Started</div>
+      <h2 class="section-title">How it works</h2>
+      <p class="section-subtitle">From unboxing to your first conversation in minutes.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Place the Sensor</h3>
+          <p>Nestle the small wireless sensor into the soil of your houseplant. It immediately starts reading moisture, light, temperature, and humidity.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Snap a Photo</h3>
+          <p>Take a photo of your plant in the app. AI identifies the species, fetches ideal care ranges, and generates a charming Ghibli-style avatar.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Start Talking</h3>
+          <p>Your plant now has a voice. It tells you when it's thirsty, asks about your day, and becomes a gentle companion you look forward to checking on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo / Poster -->
+  <section class="demo">
+    <div class="demo-inner">
+      <div class="section-label">Product Overview</div>
+      <h2 class="section-title">The full picture</h2>
+      <p class="section-subtitle" style="margin-bottom: 40px;">Hardware sensing meets emotional AI in a pocket-sized experience.</p>
+      <img src="images/poster-without-logo.png" alt="LeafAlive product overview poster">
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to hear your plant?</h2>
+    <p>LeafAlive is open source. Star the repo, try it out, or contribute to the project.</p>
+    <a href="https://github.com/hjian42/LeafAlive" class="cta-button">
+      &#9733; Star on GitHub
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 LeafAlive &middot; Built with care by the <a href="https://github.com/hjian42/LeafAlive">LeafAlive team</a></p>
+  </footer>
+
+</body>
+</html>

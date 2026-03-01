@@ -230,8 +230,8 @@
     }
     .screenshots-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
       align-items: start;
     }
     .screenshot-item {
@@ -266,8 +266,8 @@
     }
     .steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
       margin-top: 60px;
     }
     .step {
@@ -380,10 +380,13 @@
       .hero p { margin: 0 auto 28px; }
       .hero-image img { max-height: 400px; }
       .features-grid,
-      .screenshots-grid,
       .steps {
         grid-template-columns: 1fr;
         gap: 24px;
+      }
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
       }
       .section-title { font-size: 28px; }
       .cta h2 { font-size: 28px; }
@@ -414,13 +417,13 @@
       <div class="hero-text">
         <div class="hero-badge">Sensor + AI + Empathy</div>
         <h1>Your plant has<br>a <em>voice</em> now.</h1>
-        <p>LeafAlive pairs a tiny soil sensor with an AI-powered persona so your houseplant can tell you how it feels, ask for what it needs, and even listen when you need a friend.</p>
+        <p>LeafAlive transforms real biological signals into emotionally grounded conversations. Instead of alerts and dashboards, your plant develops a voice, a personality, and a relationship with you.</p>
         <a href="#contact" class="hero-cta">
           Get in Touch &rarr;
         </a>
       </div>
       <div class="hero-image">
-        <img src="images/ideal_demo.jpg" alt="LeafAlive demo - phone app next to a plant with sensor">
+        <img src="images/ideal_demo_0301.png" alt="LeafAlive demo - phone app next to a plant with sensor">
       </div>
     </div>
   </section>
@@ -429,23 +432,23 @@
   <section class="features" id="features">
     <div class="features-inner">
       <div class="section-label">Why LeafAlive</div>
-      <h2 class="section-title">Three pillars of plant care</h2>
-      <p class="section-subtitle">We combine real hardware sensing, AI personality, and emotional design to build a genuine connection between you and your plant.</p>
+      <h2 class="section-title">From alerts to relationship</h2>
+      <p class="section-subtitle">Today's plant technology is one-directional: you care for the plant, it sends you alerts. LeafAlive creates a bidirectional relationship where care becomes connection.</p>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">&#127777;&#65039;</div>
-          <h3>Real-Time Plant Sensing</h3>
-          <p>A small sensor sits in the soil, continuously measuring moisture, light, temperature, and humidity. Your plant's vitals, always at a glance.</p>
+          <div class="feature-icon">&#127908;</div>
+          <h3>Voice-First Conversation</h3>
+          <p>Talk to your plant with a walkie-talkie style interface. Hold to speak, and your plant responds aloud with text-to-speech &mdash; hands-free and natural.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#129302;</div>
-          <h3>AI-Powered Plant Persona</h3>
-          <p>Each plant gets a unique name and personality. It reads its own sensor data and speaks in first person &mdash; telling you exactly what it needs.</p>
+          <div class="feature-icon">&#128140;</div>
+          <h3>Emotions, Not Numbers</h3>
+          <p>Sensor data is expressed as emotions and personality. Instead of raw readings, your plant tells you it's feeling parched, cozy, or craving sunlight.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#128154;</div>
-          <h3>A Gentle Listener</h3>
-          <p>Your plant doesn't just talk about itself. It asks about your day, listens to your stories, and offers comfort when you need it most.</p>
+          <div class="feature-icon">&#128588;</div>
+          <h3>Proactive Care Rituals</h3>
+          <p>Your plant doesn't wait for emergencies. It gently initiates conversations, checks in on you, and builds small care rituals over time.</p>
         </div>
       </div>
     </div>
@@ -455,23 +458,28 @@
   <section class="screenshots" id="app">
     <div class="screenshots-inner">
       <div class="section-label">The App</div>
-      <h2 class="section-title">Meet your plants, all in one place</h2>
-      <p class="section-subtitle">Manage multiple plants, monitor real-time sensor data with ideal ranges, and have natural conversations.</p>
+      <h2 class="section-title">From sensing to connection</h2>
+      <p class="section-subtitle">Live biological signals become a dynamic health score, shaping a persistent AI persona that proactively cares for you.</p>
       <div class="screenshots-grid">
         <div class="screenshot-item">
-          <img src="images/1.app_plant_management.jpg" alt="Plant management screen with Ghibli-style avatars">
-          <h3>Your Plant Collection</h3>
-          <p>Each plant gets an AI-generated avatar and a unique persona name.</p>
+          <img src="images/health-score.jpg" alt="Health score dashboard with sensor readings expressed as emotions">
+          <h3>Health Score</h3>
+          <p>Sensor data is translated into a dynamic health score with species-aware ideal ranges.</p>
         </div>
         <div class="screenshot-item">
-          <img src="images/2.app_plant_sensor_metrics.jpg" alt="Sensor metrics dashboard showing temperature, humidity, light, moisture">
-          <h3>Live Sensor Dashboard</h3>
-          <p>See real-time readings with recommended ranges for your specific plant species.</p>
+          <img src="images/ai-persona.jpg" alt="Voice chat with plant persona using hold-to-talk interface">
+          <h3>AI Persona with Voice</h3>
+          <p>Your plant speaks with a unique personality, grounded in its real environmental state.</p>
         </div>
         <div class="screenshot-item">
-          <img src="images/3.app_chat.jpg" alt="Chat conversation with plant persona expressing needs and listening">
-          <h3>Chat with Your Plant</h3>
-          <p>Your plant expresses its needs from sensor data and genuinely listens to you.</p>
+          <img src="images/proactive-chat.jpg" alt="Plant proactively initiating conversation and offering care advice">
+          <h3>Proactive Care</h3>
+          <p>Instead of waiting for problems, your plant gently initiates conversations and care rituals.</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="images/care-humans.jpg" alt="Plant listening and comforting the human in conversation">
+          <h3>Your Plant Cares Back</h3>
+          <p>It listens to your stories, offers comfort, and becomes a gentle presence in your life.</p>
         </div>
       </div>
     </div>
@@ -486,18 +494,23 @@
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
-          <h3>Place the Sensor</h3>
-          <p>Nestle the small wireless sensor into the soil of your houseplant. It immediately starts reading moisture, light, temperature, and humidity.</p>
+          <h3>Sense</h3>
+          <p>Place a small wireless sensor in the soil. It continuously reads moisture, light, temperature, and humidity &mdash; your plant's biological signals.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
-          <h3>Snap a Photo</h3>
-          <p>Take a photo of your plant in the app. AI identifies the species, fetches ideal care ranges, and generates a charming Ghibli-style avatar.</p>
+          <h3>Understand</h3>
+          <p>Signals become a dynamic health score. AI identifies the species, fetches ideal ranges, and translates raw data into emotions.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <h3>Start Talking</h3>
-          <p>Your plant now has a voice. It tells you when it's thirsty, asks about your day, and becomes a gentle companion you look forward to checking on.</p>
+          <h3>Connect</h3>
+          <p>Your plant gets a persistent persona with memory and voice. It speaks in character, grounded in how it actually feels right now.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Care</h3>
+          <p>Instead of waiting for emergencies, your plant proactively initiates conversations and builds small care rituals over time.</p>
         </div>
       </div>
     </div>
@@ -509,14 +522,14 @@
       <div class="section-label">Product Overview</div>
       <h2 class="section-title">The full picture</h2>
       <p class="section-subtitle" style="margin-bottom: 40px;">Hardware sensing meets emotional AI in a pocket-sized experience.</p>
-      <img src="images/poster-horizontal.png" alt="LeafAlive product overview poster">
+      <img src="images/poster-horizontal-new.png" alt="LeafAlive product overview poster">
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta" id="contact">
     <h2>Ready to hear your plant?</h2>
-    <p>We'd love to hear from you. Drop us a line and let's grow something together.</p>
+    <p>66% of U.S. households own houseplants. None of them can talk back &mdash; until now. Drop us a line and let's grow something together.</p>
     <a href="mailto:leafalive@googlegroups.com" class="cta-button">
       &#9993; Get in Touch
     </a>
